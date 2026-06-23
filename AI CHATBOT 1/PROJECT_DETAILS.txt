@@ -1,0 +1,41 @@
+# PROJECT DETAILS: ENTERPRISE AI CHATBOT
+
+## 1. OVERVIEW
+This is a locally-hosted Artificial Intelligence Chatbot designed for "Semantic Knowledge Retrieval" (RAG) and general-purpose assistance. It allows users to upload PDF documents and ask questions based on their content, while also being capable of answering general knowledge questions.
+
+## 2. TECHNICAL STACK
+- **Backend Framework**: FastAPI (Python)
+- **AI Engine**: Ollama (locally running Llama 3.2 model)
+- **Vector Database**: ChromaDB (stores document embeddings for semantic search)
+- **PDF Processing**: pypdf (extracts text from uploaded files)
+- **Frontend**: Vanilla HTML5, CSS3 (Glassmorphism design), and JavaScript (ES6)
+- **Environment**: Python Virtual Environment (.venv)
+
+## 3. PROJECT STRUCTURE
+- **`backend/`**: Contains the core logic and server.
+    - **`main.py`**: The entry point/API server.
+    - **`rag_engine.py`**: The intelligence layer (handles indexing and querying).
+    - **`static/`**: The web interface (HTML/CSS/JS).
+    - **`uploads/`**: Temporary storage for uploaded PDF files.
+    - **`chroma_db/`**: Persistent storage for indexed document data.
+- **`run_chatbot.bat`**: A one-click shortcut to start the server.
+- **`.vscode/`**: Configuration for running/debugging directly in VS Code.
+
+## 4. HOW IT WORKS (WORKFLOW)
+1. **Document Upload**: When you upload a PDF, the system extracts the text and breaks it into smaller "chunks".
+2. **Indexing**: These chunks are converted into numerical "embeddings" and stored in ChromaDB.
+3. **Querying**: 
+   - When you ask a question, the system searches ChromaDB for relevant document chunks.
+   - **RAG Mode**: If relevant info is found, it sends that context to the AI (Llama 3.2) to generate an accurate answer based on your document.
+   - **General Mode**: If no relevant document info is found, the system automatically falls back to the AI's general knowledge to answer your question.
+
+## 5. RECENT CLEANUP & ENHANCEMENTS
+- Removed all redundant development scripts (`test_final.py`, `debug_rag.py`).
+- Consolidated frontend files into `backend/static`.
+- Updated the AI logic to support dual-mode (Documents + General Knowledge).
+- Cleaned up redundant database files from the root directory.
+
+## 6. HOW TO RUN
+- **Option A (VS Code)**: Open the "Run and Debug" side bar and select "Run Chatbot Backend".
+- **Option B (Desktop)**: Double-click `run_chatbot.bat`.
+- **URL**: Once started, open `http://localhost:8000` in your browser.
